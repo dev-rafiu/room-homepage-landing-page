@@ -1,0 +1,272 @@
+:root {
+  --Dark-Gray: hsl(0, 0%, 63%);
+  --Black: hsl(0, 0%, 0%);
+  --White: hsl(0, 0%, 100%);
+  --Very-Dark-Gray: hsl(0, 0%, 27%);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Spartan", sans-serif;
+  font-size: 15px;
+}
+/*===general styling===*/
+.btn {
+  background: 0;
+  border: none;
+  cursor: pointer;
+}
+a {
+  font-size: 12px;
+}
+p {
+  color: var(--Dark-Gray);
+  line-height: 1.4;
+}
+/* ==== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 1fr;
+  /* align-items: center; */
+  grid-template-areas:
+    "hero"
+    "shop"
+    "img-dark"
+    "about"
+    "img-light";
+}
+.grid-item {
+  width: 100%;
+  height: 100%;
+}
+.hero {
+  /* background: url(./images/mobile-image-hero-1.jpg); */
+  width: 100%;
+  background: var(--Dark-Gray);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  grid-area: hero;
+  height: 50vh;
+  position: relative;
+}
+/* header */
+.header {
+  padding: 3rem 2rem 0;
+}
+.header .container {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  transform: translateX(-100%);
+  transition: all 0.5s ease;
+}
+.show-nav {
+  transform: translateX(0);
+}
+.nav__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--White);
+  padding: 2rem;
+}
+.links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--Black);
+  font-weight: 700;
+  position: relative;
+}
+.links a::after {
+  content: "";
+  width: 50%;
+  border: 1px solid var(--Black);
+  margin-inline: auto;
+  position: absolute;
+  bottom: calc(0% - 0.5rem);
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.links a:hover::after {
+  opacity: 1;
+}
+.btns-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+.prev-btn,
+.next-btn {
+  background: var(--Black);
+  border-collapse: collapse;
+  padding: 1rem 1.5rem;
+}
+.prev-btn:hover,
+.next-btn:hover {
+  background: var(--Very-Dark-Gray);
+}
+/* shop */
+.shop {
+  background: var(--White);
+  grid-area: shop;
+  padding: 3rem 2rem;
+}
+.shop-item {
+  display: none;
+}
+.shop-item__title {
+  max-width: 350px;
+  /* background: yellow; */
+}
+.shop-item__body {
+  margin: 0.8rem 0;
+}
+.cta-shop-now {
+  /* font-size: 0.7rem; */
+  display: flex;
+  gap: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--Black);
+  font-weight: 700;
+  letter-spacing: 8px;
+}
+.cta-shop-now:hover {
+  color: var(--Dark-Gray);
+}
+
+.img-dark img,
+.img-light img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* display: none; */
+}
+.img-dark {
+  grid-area: img-dark;
+}
+.about {
+  padding: 3rem 2rem;
+  grid-area: about;
+}
+.about__title {
+  /* max-width: 350px; */
+  margin-bottom: 0.5rem;
+  color: var(--Black);
+}
+.about__body {
+  background: var(--White);
+  line-height: 1.4;
+  color: var(--Dark-Gray);
+}
+/* about  */
+.about__title {
+  text-transform: uppercase;
+}
+.img-light {
+  grid-area: img-light;
+}
+
+@media screen and (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: repeat(4, 1fr); */
+    grid-template-areas:
+      "hero hero"
+      "shop shop"
+      "img-dark img-light"
+      "about about";
+  }
+  .shop-item__body,
+  .about__body {
+    max-width: 500px;
+  }
+}
+
+/* media query */
+@media screen and (min-width: 950px) {
+  .grid {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    /* align-items: center; */
+    /* justify-content: center; */
+    grid-template-areas:
+      "hero hero hero hero shop shop shop"
+      "hero hero hero hero shop shop shop"
+      "img-dark img-dark about about about img-light img-light";
+  }
+  .hero {
+    width: 100%;
+    height: 100%;
+  }
+  .logo {
+    position: static;
+    transform: none;
+    margin-right: 3rem;
+  }
+  .menu-btn,
+  .close-btn {
+    display: none;
+  }
+  .btns-container {
+    transform: translateX(100%);
+  }
+  .shop {
+    display: grid;
+    place-content: center;
+  }
+  .nav {
+    position: static;
+    /* top: 0; */
+    transform: none;
+    width: auto;
+    height: auto;
+    background: transparent;
+    /* transform: translateX(50%); */
+    /* background-color: blueviolet; */
+  }
+  .nav__header {
+    background: transparent;
+    padding: 0;
+  }
+  .links a {
+    color: var(--White);
+  }
+  .links a::after {
+    border: 1px solid var(--White);
+  }
+
+  /* .links > * {
+    margin-right: 1.5rem;
+  } */
+}
